@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>笔记管理</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-siteapp">
+	<meta name="apple-mobile-web-app-title" content="Tabyouto">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<nav class="navigation">
+		<h1>笔记本</h1>
+		<div class="show-btn"><i class="fa fa-list"></i></div>
+		<section class="category-list">
+			<ul >
+			</ul>
+			<div class="add-category">
+				<a class="doadd" href="javascript:void(0)"><i class="fa fa-plus-circle"></i></a>
+			</div>
+			<div class="trash">
+				<a href=""><i class="fa fa-trash-o"></i></a>
+			</div>
+		</section>
+	</nav>
+	<section class="ca-content-list ">
+		<div class="ca-wrap">
+			<div class="list-header">
+				<span class="note-title">笔记</span>
+				<a href="javascript:void(0)">新建笔记</a>
+				<div class="clearfix"></div>
+			</div>
+			<div class="list-content ">
+				<!-- <article class="list">
+					<header><h2>深入理解Javascript中的面向对象</h2></header> -->
+					<!-- <img src="imgs/img.jpg" alt=""> -->
+				<!-- 	<p class="note">在学习Javascript的过程中，面向对象是必须要学会的课题。然而，网络上大部分文章只是简单地讲述如何通过代码实现面向对象，忽略了理论和原理方面的知识。本系列文章将从头开始逐步讲解面向对象编程思想及其在Javascript中的实现与应用。但这种实现方式有着不少缺陷：要增加更多形状的周长计算时，必须改动computePerimeter函数，可扩展性差；算法集中在computePerimeter函数，随着形状越来越多，这个函数会越来越庞大，最终变得难以维护；computePerimeter通过shape.type判定形状类型，但如果type属性值错误（如拼错或大小写错误），就无法计算出正确的周长值。如何解决以上缺陷呢？带着这个问题，我们开始学习面向对象。类和对象类是对具有相</p>
+				</article> -->
+
+			</div>
+		</div>
+		<div class="content-list">
+			<div class="content-header">
+				<div class="component">
+					<a href="javascript:void(0)" class="delete c-left"></a>
+					<a href="" class="full-screen c-right"></a>
+					<a href="JavaScript:void(0)" class="preview c-right" >预览</a>
+					<a href="JavaScript:void(0)" class="finish c-right" >完成</a>
+
+				</div>
+				<div class="set-category-tag">
+					
+				</div>
+				<div class="title">
+				<input type='hidden' value="" name="hideCheck" class="hideCheck">
+					<input type="text" class="input-title" placeholder="请输入标题">
+				</div>
+			</div>
+			<div class="content">
+				<textarea class="insert-content" name="" id="" placeholder="请输入内容,可以使用markdown语法"></textarea>
+			</div>
+		</div>
+
+	</section>
+	<div class="clearfix"></div>
+	<div class="addCategory">
+		<label for="">添加分类</label><input type="text" class="cat-content">
+		<input type="submit" class="submit">
+	</div>
+	<div class="mask"></div>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/showdown.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		/**
+		 *预览按钮
+		 */
+		 $(document).ready(function(){
+			 $('.preview').click(function(event){
+			 	$('.content div').remove('div');
+			 	if($(this).text()=="编辑"){
+			 		$(this).text('预览');
+			 		$('.insert-content').css('display',"block");
+			 	}else{
+			 		$(this).text('编辑');
+			 		$('.insert-content').css('display',"none");
+			 	}
+
+			 	var converter = new showdown.Converter();
+			    var html      = "<div style='width:100%;height:100%;overflow:auto'>"+converter.makeHtml($('.insert-content').val())+"</div>";
+			 	// $('.insert-content').value(html);
+			 	$('.content').append(html);
+			 	
+			 });
+		 });
+	</script>
+</body>
+</html>
